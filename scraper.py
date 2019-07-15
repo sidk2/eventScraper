@@ -14,9 +14,10 @@ USER_AGENT = {
 
 # check network connectivity
 
+
 def internet_on():
     try:
-        requests.get("https://www.google.com", timeout = 10)
+        requests.get("https://www.google.com", timeout=10)
     except OSError:
         return False
     else:
@@ -87,18 +88,25 @@ def eventFinder(address: str):
 
             if (dateString != []):
                 eventDate = soupOfEventBoxes.find_all(string=dateReturn)
+                
                 if(len(eventDate) > 0):
                     dateAndTimeBox = eventDate[0].parent.parent.parent
                     bigBox = dateAndTimeBox.next_sibling
                     eventName = cleanRequest(
                         str(bigBox.find_all(class_="title")))
+                    
                     return eventName
+                
                 else:
+                    
                     return None
+            
             else:
+                
                 return None
 
         else:
+            
             return None
 
     elif (page.find_all(class_="AxJnmb") is not []):
@@ -120,17 +128,24 @@ def eventFinder(address: str):
                 dateAndTimeBox = eventDate[0].parent.parent.parent
                 bigBox = dateAndTimeBox.next_sibling
                 eventName = cleanRequest(str(bigBox.find_all(class_="title")))
+                
                 return eventName
+            
             else:
+                
                 return None
         else:
 
             return None
+
     else:
+
         return None
+
 
 if (internet_on() is True):
     returnVal = eventFinder(searchResult(GPSReturn))
     print(returnVal)
+
 else:
     print("Error: No internet")
