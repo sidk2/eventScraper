@@ -1,16 +1,26 @@
 from bs4 import BeautifulSoup as soup
-from urllib.request import Request, urlopen
+import urllib as urllib
 import re
 from geopy.geocoders import Nominatim
 import requests
-
+from requests.exceptions import ConnectionError
 # input coordinates of device in DD. CANNOT BE IN DMS OR PROGRAM WILL NOT WORK
-# example coordinates are for Moscone Center
-GPSReturn = '37.7843° N, 122.4007° W'
-dateReturn = 'Tue, Jul 16'
+# example coordinates are for the Tower of London
+GPSReturn = '51.5081° N, 0.0759° W'
+dateReturn = 'Sat, Jul 20'
 timeReturn = '2:30 PM'
 USER_AGENT = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'}
+
+# check network connectivity
+
+def internet_on():
+    try:
+        requests.get("https://www.google.com", timeout = 10)
+    except OSError:
+        return False
+    else:
+        return True
 
 # cleans HTML tags from string
 
@@ -119,5 +129,8 @@ def eventFinder(address: str):
     else:
         return None
 
-
-print(eventFinder(searchResult(GPSReturn)))
+if (internet_on() is True):
+    returnVal = eventFinder(searchResult(GPSReturn))
+    print(returnVal)
+else:
+    print("Error: No internet")
