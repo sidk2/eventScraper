@@ -5,9 +5,9 @@ from geopy.geocoders import Nominatim
 import requests
 
 # input coordinates of device in DD. CANNOT BE IN DMS OR PROGRAM WILL NOT WORK
-# example coordinates are for Oracle Arena (should return Shawn Mendes)
-GPSReturn = '37.7503° N, 122.2030° W'
-dateReturn = 'Sun, Jul 14'
+# example coordinates are for Moscone Center
+GPSReturn = '37.7843° N, 122.4007° W'
+dateReturn = 'Tue, Jul 16'
 timeReturn = '2:30 PM'
 USER_AGENT = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'}
