@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup as soup
 from urllib.request import Request, urlopen
 import re
-from nltk.corpus import stopwords
 from geopy.geocoders import Nominatim
 import requests
 
