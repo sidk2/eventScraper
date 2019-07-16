@@ -3,11 +3,11 @@ import urllib as urllib
 import re
 from geopy.geocoders import Nominatim
 import requests
-from requests.exceptions import ConnectionError
-# input coordinates of device in DD. CANNOT BE IN DMS OR PROGRAM WILL NOT WORK
+
+# input coordinates of device in DD.
 # example coordinates are for the Tower of London
 GPSReturn = '51.5081° N, 0.0759° W'
-dateReturn = 'Sat, Jul 20'
+dateReturn = 'Thu, Jul 18'
 timeReturn = '2:30 PM'
 USER_AGENT = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'}
@@ -145,7 +145,5 @@ def eventFinder(address: str):
 
 if (internet_on() is True):
     returnVal = eventFinder(searchResult(GPSReturn))
-    print(returnVal)
-
 else:
-    print("Error: No internet")
+    print("Error: No Internet")
